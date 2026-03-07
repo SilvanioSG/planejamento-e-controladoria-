@@ -57,6 +57,13 @@
             border: 3px solid white;
             box-shadow: 0 8px 16px rgba(39, 98, 141, 0.3);
             background: white;
+            /* EFEITO: transição suave na foto */
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .header-foto img:hover {
+            transform: scale(1.06) rotate(1deg);
+            box-shadow: 0 12px 24px rgba(39, 98, 141, 0.5);
         }
 
         .header-conteudo {
@@ -141,6 +148,13 @@
             display: flex;
             align-items: center;
             gap: 0.6rem;
+            /* EFEITO HOVER sutil nos títulos principais (seções) */
+            transition: border-left-width 0.2s ease, padding-left 0.2s ease, color 0.2s ease;
+        }
+        .conteudo-manual h2:hover {
+            border-left-width: 10px;
+            padding-left: 0.8rem;
+            color: #1c4b6e;
         }
 
         .conteudo-manual h2:first-of-type {
@@ -163,6 +177,11 @@
             display: flex;
             align-items: center;
             gap: 0.6rem;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .conteudo-manual h3:hover {
+            color: rgb(39, 98, 141);
+            transform: translateX(4px);
         }
 
         .conteudo-manual h3::before {
@@ -187,6 +206,7 @@
             margin-bottom: 0.4rem;
         }
 
+        /* EFEITO HOVER para blocos de destaque (seções) */
         .kpi-grid {
             display: flex;
             flex-wrap: wrap;
@@ -206,6 +226,12 @@
             display: flex;
             align-items: center;
             gap: 0.6rem;
+            transition: box-shadow 0.3s ease, transform 0.3s ease, border-left-width 0.2s ease;
+        }
+        .kpi-item:hover {
+            box-shadow: 0 12px 20px -8px rgba(39, 98, 141, 0.3);
+            transform: translateY(-3px);
+            border-left-width: 8px;
         }
 
         .kpi-item::before {
@@ -221,6 +247,12 @@
             padding: 1.5rem;
             margin: 1.5rem 0;
             border: 1px solid rgba(39, 98, 141, 0.25);
+            transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
+        }
+        .exemplo-5w2h:hover {
+            box-shadow: 0 15px 25px -12px rgba(39, 98, 141, 0.3);
+            transform: translateY(-2px);
+            background: #e7f0fa;
         }
 
         .tabela-5w2h {
@@ -250,6 +282,12 @@
             border-radius: 30px;
             padding: 2rem 2rem 1.5rem 2rem;
             margin: 2rem 0 1rem;
+            transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.2s ease;
+        }
+        .checklist:hover {
+            box-shadow: 0 15px 25px -12px rgba(39, 98, 141, 0.25);
+            transform: translateY(-3px);
+            border-color: rgb(39, 98, 141);
         }
 
         .checklist-item {
@@ -279,6 +317,12 @@
             border-radius: 2rem;
             margin: 2rem 0 1rem;
             border: 1px solid rgba(39, 98, 141, 0.25);
+            transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
+        }
+        .resumo-lider:hover {
+            box-shadow: 0 15px 25px -10px rgba(39, 98, 141, 0.3);
+            transform: translateY(-2px);
+            background: #e7eff9;
         }
 
         /* espaço de anotações (nova seção com tom pessoal) */
@@ -289,6 +333,12 @@
             padding: 2rem;
             margin: 2.5rem 0 2rem;
             box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+            transition: box-shadow 0.3s ease, transform 0.3s ease, border 0.2s ease;
+        }
+        .espaco-anotacoes:hover {
+            box-shadow: 0 12px 20px -10px rgba(39, 98, 141, 0.2), inset 0 1px 4px rgba(0,0,0,0.02);
+            transform: translateY(-2px);
+            border: 1px solid rgb(39, 98, 141);
         }
 
         .espaco-anotacoes p {
@@ -315,6 +365,11 @@
             margin-bottom: 1.5rem;
             border: 1px solid rgba(39,98,141,0.2);
             letter-spacing: 0.3px;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .selo-versao:hover {
+            background: rgba(39, 98, 141, 0.18);
+            transform: scale(1.02);
         }
 
         /* NOTA FINAL – fundo azul, texto BRANCO */
@@ -328,6 +383,11 @@
             font-weight: 400;
             margin-top: 2.5rem;
             box-shadow: 0 6px 14px rgba(0, 35, 70, 0.2);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .nota-final:hover {
+            box-shadow: 0 20px 30px -10px rgba(0, 35, 70, 0.5);
+            transform: translateY(-3px);
         }
 
         .nota-final p {
@@ -385,6 +445,48 @@
             font-size: 1.1rem;
         }
 
+        /* ===== BOTÃO VOLTAR AO TOPO (discreto) ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(39, 98, 141, 0.75);
+            backdrop-filter: blur(4px);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 20, 40, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid rgba(255,255,255,0.2);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            background: rgb(39, 98, 141);
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 20px rgba(39, 98, 141, 0.5);
+        }
+
+        .back-to-top span {
+            line-height: 1;
+            margin-bottom: 4px; /* pequeno ajuste para a seta */
+        }
+
         @media (max-width: 650px) {
             .header {
                 flex-direction: column;
@@ -411,6 +513,14 @@
                 gap: 1rem;
                 text-align: center;
             }
+            /* botão menor no mobile */
+            .back-to-top {
+                bottom: 1.2rem;
+                right: 1.2rem;
+                width: 42px;
+                height: 42px;
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
@@ -423,7 +533,7 @@
             </div>
             <div class="header-conteudo">
                 <h1>📘 MANUAL UNIFICADO DO GESTOR</h1>
-                <div class="subtitulo">planejamento & controladoria · guia prático</div>
+                <div class="subtitulo">Planejamento & Controladoria · Guia prático</div>
                 <div class="header-contato">
                     <span class="nome">Silvanio Góis</span>
                     <a href="https://wa.me/5513988301094" target="_blank" rel="noopener" class="whatsapp-link">
@@ -579,5 +689,36 @@
             <a href="https://www.silvaniogois.com.br/" target="_blank" rel="noopener">ir ao Site</a>
         </div>
     </div>
+
+    <!-- BOTÃO VOLTAR AO TOPO -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><span>↑</span></a>
+
+    <!-- SCRIPT PARA MOSTRAR/ESCONDER BOTÃO E SCROLL SUAVE -->
+    <script>
+        (function() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            // Mostrar botão após rolar 300px
+            function toggleButton() {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            }
+
+            window.addEventListener('scroll', toggleButton);
+            toggleButton(); // verificar posição inicial
+
+            // Scroll suave ao clicar
+            backToTopButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
