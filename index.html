@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual do Gestor · Silvanio Góis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 1.5rem 1rem;
+            line-height: 1.5;
+            color: #1a2c3b;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background-color: white;
+            border-radius: 2rem 2rem 1.5rem 1.5rem;
+            box-shadow: 0 20px 35px -8px rgba(18, 52, 77, 0.25);
+            overflow: hidden;
+            border: 1px solid rgba(39, 98, 141, 0.18);
+        }
+
+        /* cabeçalho */
+        .header {
+            background: linear-gradient(to right, rgba(39, 98, 141, 0.02), rgba(39, 98, 141, 0.06));
+            padding: 1.8rem 2rem;
+            border-bottom: 3px solid rgb(39, 98, 141);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.8rem;
+        }
+
+        .header-foto {
+            flex-shrink: 0;
+        }
+
+        .header-foto img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 8px 16px rgba(39, 98, 141, 0.3);
+            background: white;
+        }
+
+        .header-conteudo {
+            flex: 1;
+            min-width: 240px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .header-conteudo h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: rgb(39, 98, 141);
+            line-height: 1.2;
+        }
+
+        .header-conteudo .subtitulo {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #2f4a62;
+            margin-bottom: 0.25rem;
+        }
+
+        .header-contato {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            margin-top: 0.3rem;
+        }
+
+        .header-contato .nome {
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: #1e3b4e;
+            background: rgba(39, 98, 141, 0.1);
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        .header-contato .whatsapp-link {
+            background: #1f3e4b;
+            color: white;
+            padding: 0.5rem 1.3rem;
+            border-radius: 40px;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header-contato .whatsapp-link:hover {
+            background: #14313e;
+        }
+
+        .whatsapp-link::before {
+            content: "📞";
+            font-size: 1.1rem;
+            filter: grayscale(0.3);
+        }
+
+        /* conteúdo principal */
+        .conteudo-manual {
+            padding: 2.5rem 2rem;
+        }
+
+        /* ícones monocromáticos */
+        .conteudo-manual h2 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            color: rgb(39, 98, 141);
+            border-left: 6px solid rgb(39, 98, 141);
+            padding-left: 1rem;
+            margin: 2.8rem 0 1.2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .conteudo-manual h2:first-of-type {
+            margin-top: 0.2rem;
+        }
+
+        .conteudo-manual h2:nth-of-type(1)::before { content: "⚑"; font-size: 1.8rem; font-weight: 300; color: rgb(39, 98, 141); }  
+        .conteudo-manual h2:nth-of-type(2)::before { content: "⚖"; font-size: 2rem; font-weight: 300; color: rgb(39, 98, 141); }    
+        .conteudo-manual h2:nth-of-type(3)::before { content: "◉"; font-size: 2rem; font-weight: 300; color: rgb(39, 98, 141); }      
+        .conteudo-manual h2:nth-of-type(4)::before { content: "▣"; font-size: 1.9rem; font-weight: 300; color: rgb(39, 98, 141); }    
+        .conteudo-manual h2:nth-of-type(5)::before { content: "◈"; font-size: 2rem; font-weight: 300; color: rgb(39, 98, 141); }     
+        .conteudo-manual h2:nth-of-type(6)::before { content: "⊚"; font-size: 1.9rem; font-weight: 300; color: rgb(39, 98, 141); }    
+        .conteudo-manual h2:nth-of-type(7)::before { content: "☑"; font-size: 1.9rem; font-weight: 300; color: rgb(39, 98, 141); }    
+
+        .conteudo-manual h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 1.8rem 0 0.8rem 0;
+            color: #1c3f55;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .conteudo-manual h3::before {
+            content: "▸";
+            color: rgb(39, 98, 141);
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .conteudo-manual p {
+            margin-bottom: 1rem;
+            font-size: 1.08rem;
+            color: #1e3443;
+        }
+
+        .conteudo-manual ul, .conteudo-manual ol {
+            margin: 0.6rem 0 1.5rem 1.8rem;
+        }
+
+        .conteudo-manual li {
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .kpi-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .kpi-item {
+            background: #f3f7fb;
+            border-left: 5px solid rgb(39, 98, 141);
+            padding: 1.1rem 1.3rem;
+            flex: 1 1 160px;
+            border-radius: 0 20px 20px 0;
+            font-weight: 450;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            color: #1f3d52;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .kpi-item::before {
+            content: "▪";
+            color: rgb(39, 98, 141);
+            font-size: 1.3rem;
+            opacity: 0.7;
+        }
+
+        .exemplo-5w2h {
+            background: #f0f5fc;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(39, 98, 141, 0.25);
+        }
+
+        .tabela-5w2h {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.8rem;
+        }
+
+        .tabela-5w2h th {
+            text-align: left;
+            background-color: rgba(39, 98, 141, 0.1);
+            padding: 0.8rem 0.6rem;
+            font-weight: 600;
+            color: rgb(39, 98, 141);
+            width: 100px;
+            font-size: 0.98rem;
+        }
+
+        .tabela-5w2h td {
+            padding: 0.8rem 0.6rem;
+            border-bottom: 1px solid #cbd6e3;
+        }
+
+        .checklist {
+            background: white;
+            border: 2px solid rgba(39, 98, 141, 0.35);
+            border-radius: 30px;
+            padding: 2rem 2rem 1.5rem 2rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-bottom: 1.2rem;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 1.4rem;
+            height: 1.4rem;
+            accent-color: rgb(39, 98, 141);
+            margin-top: 0.15rem;
+            flex-shrink: 0;
+        }
+
+        .checklist-item label {
+            font-size: 1.05rem;
+            font-weight: 430;
+            color: #1c3342;
+        }
+
+        .resumo-lider {
+            background: #f0f5fb;
+            padding: 2rem;
+            border-radius: 2rem;
+            margin: 2rem 0 1rem;
+            border: 1px solid rgba(39, 98, 141, 0.25);
+        }
+
+        /* espaço de anotações (nova seção com tom pessoal) */
+        .espaco-anotacoes {
+            background: #f9f7f3;
+            border: 1px dashed #a0b8c9;
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2.5rem 0 2rem;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+        }
+
+        .espaco-anotacoes p {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #1c3f55;
+        }
+
+        .linha-anotacao {
+            border-bottom: 2px dashed #b3c6d9;
+            margin: 1.2rem 0;
+            height: 1.2rem;
+            width: 100%;
+        }
+
+        /* selo de versão discreto */
+        .selo-versao {
+            display: inline-block;
+            background: rgba(39, 98, 141, 0.08);
+            color: #1e3f57;
+            font-size: 0.85rem;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(39,98,141,0.2);
+            letter-spacing: 0.3px;
+        }
+
+        /* NOTA FINAL – fundo azul, texto BRANCO */
+        .nota-final {
+            background: rgb(39, 98, 141);
+            color: white !important;
+            padding: 1.8rem 2.2rem;
+            border-radius: 3rem 3rem 1.8rem 1.8rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-top: 2.5rem;
+            box-shadow: 0 6px 14px rgba(0, 35, 70, 0.2);
+        }
+
+        .nota-final p {
+            color: white !important;
+            margin-bottom: 0;
+        }
+
+        .nota-final strong {
+            font-weight: 600;
+            text-decoration: underline wavy rgba(255,255,255,0.5);
+            text-underline-offset: 4px;
+            color: white;
+        }
+
+        /* rodapé */
+        .rodape {
+            background: #142d3b;
+            color: #e5f0f7;
+            padding: 1.5rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1rem;
+            border-top: 3px solid rgb(39, 98, 141);
+        }
+
+        .rodape .direitos {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .rodape a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            background: rgb(39, 98, 141);
+            padding: 0.4rem 1.3rem;
+            border-radius: 40px;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .rodape a:hover {
+            background: #1b4a6b;
+        }
+
+        .rodape a::after {
+            content: " ↗";
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 650px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.5rem;
+            }
+            .header-conteudo h1 {
+                font-size: 1.8rem;
+            }
+            .conteudo-manual {
+                padding: 1.8rem 1.2rem;
+            }
+            .header-contato {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+            .header-contato .whatsapp-link {
+                width: 100%;
+                justify-content: center;
+            }
+            .rodape {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- cabeçalho com foto e nome -->
+        <div class="header">
+            <div class="header-foto">
+                <img src="Executivo_Silvanio_Gestor.PNG" alt="Silvanio Góis" onerror="this.src='https://via.placeholder.com/110x110/27628d/ffffff?text=SG'; this.style.border='2px solid white';">
+            </div>
+            <div class="header-conteudo">
+                <h1>📘 MANUAL UNIFICADO DO GESTOR</h1>
+                <div class="subtitulo">planejamento & controladoria · guia prático</div>
+                <div class="header-contato">
+                    <span class="nome">Silvanio Góis</span>
+                    <a href="https://wa.me/5513988301094" target="_blank" rel="noopener" class="whatsapp-link">
+                        Contato
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTEÚDO PRINCIPAL (denso, tom pessoal) -->
+        <div class="conteudo-manual">
+
+            <!-- selo de versão discreto, reforçando atualização -->
+            <div class="selo-versao">versão 2.1 · março/2026 · atualizado com cases reais</div>
+
+            <p style="font-size:1.2rem; font-weight:350; margin-bottom:2rem;">
+            Gestor, este documento é o nosso roteiro de bordo. Não é teoria; é o que eu uso para equilibrar o sonho (Planejamento) com a realidade (Controladoria). Vou compartilhar aqui as ferramentas, os gatilhos mentais e os erros que aprendi a evitar. Use, adapte e, principalmente, <strong>use</strong>.
+            </p>
+
+            <!-- ===== FASE 1 ===== -->
+            <h2>FASE 1: O OLHAR ESTRATÉGICO (Planejamento)</h2>
+            <p><strong>Antes da execução: Definindo o destino e a rota.</strong> Nesta fase, você atua como o arquiteto do negócio. O objetivo é ser proativo, mas sem criar castelos no ar. O planejamento sem dados é só uma carta de intenções.</p>
+            <h3>Definição de Metas (Alvos Cirúrgicos)</h3>
+            <p>Não adianta dizer "quero crescer". Eu já vi isso dar errado. Meta tem que ser um número que incomode e que, ao mesmo tempo, tenha um caminho claro. Exemplo: "Aumentar a receita em 18% no próximo trimestre, mantendo a margem bruta acima de 32%." Percebe? Não é só vender mais, é vender bem.</p>
+            <ul>
+                <li><strong>Top-Down vs. Bottom-Up:</strong> Eu gosto de fazer os dois. O conselho define o grande número (Top-Down), e as áreas dizem como vão chegar lá (Bottom-Up). Se houver uma lacuna grande, ou a meta é irreal ou a operação está acomodada. É nessa negociação que mora o realismo.</li>
+            </ul>
+            <h3>Elaboração do Orçamento (O Budget)</h3>
+            <p>Orçamento não é uma camisa de força, é um farol. Na minha experiência, o maior erro é fazer um orçamento incremental (pegar o gasto do ano passado e subir 5%). Isso perpetua ineficiências. Prefiro o <strong>Orçamento Base Zero</strong> pelo menos uma vez ao ano: cada gerente tem que justificar cada centavo do zero. É trabalhoso, mas revela os "vampiros" de caixa.</p>
+            <h3>Projeção de Cenários (O Guarda-Chuva)</h3>
+            <p>Eu sempre exijo três cenários:</p>
+            <ul>
+                <li><strong>Cenário Realista:</strong> A meta a ser batida.</li>
+                <li><strong>Cenário Pessimista:</strong> O nosso "ponto de disparo de alerta". Se a receita cair 10%, qual o plano de contingência imediato? (Ex: congelar contratações, renegociar aluguéis).</li>
+                <li><strong>Cenário Otimista:</strong> O problema do crescimento. Se as vendas explodirem, temos caixa para o capital de giro? A fábrica aguenta? Já vi empresa quebrar por crescer rápido demais sem estrutura.</li>
+            </ul>
+
+            <!-- ===== FASE 2 ===== -->
+            <h2>FASE 2: O OLHAR ANALÍTICO (Controladoria)</h2>
+            <p><strong>Durante a execução: Garantindo que o plano saia do papel com segurança.</strong> Aqui é onde a borracha encontra a estrada. A controladoria é o "vigilante" do presente, mas tem que ter um olho no futuro.</p>
+            <h3>Gestão de Custos e Ativos (Onde o dinheiro respira)</h3>
+            <p>Não se engane com "custos fixos". No longo prazo, todos os custos são variáveis. O aluguel é fixo? Sim, até você decidir mudar para um lugar menor. A folha é fixa? Até você rever processos. A controladoria precisa separar o custo em:</p>
+            <ul>
+                <li><strong>Custos Estruturais:</strong> O mínimo necessário para a porta abrir.</li>
+                <li><strong>Custos Estratégicos:</strong> Marketing, P&D. Esses podem ser ajustados conforme o momento, mas sem matar o futuro.</li>
+            </ul>
+            <h3>Controles Internos e Auditoria (A Fé, mas com Obras)</h3>
+            <p>Confiança é boa, controle é melhor. Já peguei desvio de estoque porque um único funcionário autorizava compra, recebia mercadoria e autorizava pagamento. <strong>Segregação de funções não é burocracia, é proteção.</strong> Implemente o "princípio dos quatro olhos": tudo que é crítico (pagamento, baixa de estoque, fechamento de caixa) precisa ser revisto por outra pessoa.</p>
+            <h3>Gestão Fiscal e Conformidade (O Preço da Paz)</h3>
+            <p>Não existe lucro real se a empresa dorme com passivo fiscal. Já vi negócio rentável operacionalmente ser engolido por autuações que poderiam ter sido evitadas com um bom planejamento tributário. A controladoria deve olhar o imposto não como um custo, mas como uma variável a ser otimizada dentro da lei.</p>
+
+            <!-- ===== FASE 3 ===== -->
+            <h2>FASE 3: OS 5 INDICADORES VITAIS (KPIs)</h2>
+            <p>O que o gestor deve cobrar da controladoria para decidir com precisão. Esses são os sinais vitais da empresa. Se algum deles estiver fora do normal, você para tudo e investiga.</p>
+            <div class="kpi-grid">
+                <div class="kpi-item"><strong>Margem de Contribuição:</strong> (Receita - Custos Variáveis). É o que "sobra" de cada venda para pagar as despesas fixas. Fundamental para decisões de desconto: um desconto só vale a pena se não corroer a margem de contribuição total.</div>
+                <div class="kpi-item"><strong>Ponto de Equilíbrio (Break-even):</strong> Quantas unidades preciso vender para cobrir todos os custos? É o seu "zero a zero". Qualquer venda abaixo disso é prejuízo; acima disso, é lucro.</div>
+                <div class="kpi-item"><strong>EBITDA:</strong> Lucro operacional real antes de juros e impostos. É a medida da eficiência da operação pura. Mas cuidado: EBITDA não é caixa. Uma empresa pode ter EBITDA positivo e quebrar se tiver dívidas altas (juros) ou se não gerar caixa (estoque parado).</div>
+                <div class="kpi-item"><strong>Fluxo de Caixa Livre:</strong> O dinheiro que efetivamente entrou no caixa e está disponível. É o rei. Se o lucro contábil não vira caixa, algo está errado no ciclo financeiro.</div>
+                <div class="kpi-item"><strong>CAC (Custo de Aquisição de Cliente) vs. LTV (Life Time Value):</strong> Quanto gasto para trazer o cliente vs. quanto ele me dá de retorno durante o relacionamento. Se o CAC for maior que o LTV, seu modelo de negócio é uma "bomba relógio".</div>
+            </div>
+
+            <!-- ===== FASE 4 ===== -->
+            <h2>FASE 4: A HORA DA VERDADE (Real vs. Orçado)</h2>
+            <p><strong>O fechamento do ciclo: Confrontando o Plano com a Realidade.</strong> Essa é a reunião que separa os gestores dos "torcedores".</p>
+            <h3>Análise de Desvios (Além do Número)</h3>
+            <p>Quando o real foge do orçado, a pergunta certa não é "quem fez isso?", mas "por que isso aconteceu?". Existem três naturezas de desvio:</p>
+            <ul>
+                <li><strong>Desvio de Mercado:</strong> O cenário mudou (ex: dólar disparou). Aqui, a solução não é culpar, mas readequar a rota.</li>
+                <li><strong>Desvio de Eficiência:</strong> Gastamos mais do que o previsto para produzir a mesma coisa (ex: desperdício). Ação: treinamento, controle de processo.</li>
+                <li><strong>Desvio de Volume:</strong> Vendemos menos (ou mais) unidades do que o esperado. Ação: comercial, marketing ou ajuste na operação.</li>
+            </ul>
+            <h3>Ajuste de Rota (O Plano B)</h3>
+            <p>O orçamento não é um monumento. Se a realidade mudou, o plano tem que mudar. Faça o <strong>reforecast</strong> (revisão do orçamento) a cada trimestre. Isso mantém o planejamento vivo e útil.</p>
+
+            <!-- ===== FASE 5 ===== -->
+            <h2>FASE 5: O RITO DE GESTÃO (Reunião de Resultados)</h2>
+            <p>Trazendo o método para o dia a dia da equipe. Institua a Reunião Mensal de Resultados (60-90 min). Eu aprendi que a regularidade cria disciplina.</p>
+            <ul>
+                <li><strong>Status (15 min):</strong> A controladoria apresenta o painel (os 5 indicadores vitais). Sem opinião, só dado. Onde estamos vs. onde deveríamos estar.</li>
+                <li><strong>Debate (30 min):</strong> Discussão sobre os desvios. O gestor de cada área explica a causa raiz. Não vale "foi o mercado". Tem que ser específico: "Perdemos o cliente X porque o concorrente entregou mais rápido".</li>
+                <li><strong>Decisão (45 min):</strong> Elaboração do Plano de Ação. Aqui nasce o 5W2H da próxima fase. A reunião termina com responsáveis e prazos definidos.</li>
+            </ul>
+
+            <!-- ===== FASE 6 ===== -->
+            <h2>FASE 6: MÉTODO DE EXECUÇÃO (Plano de Ação 5W2H)</h2>
+            <p>Exemplo aplicado ao problema de "Baixa Margem de Lucro". Note como a ferramenta força o detalhamento e a responsabilização.</p>
+            <div class="exemplo-5w2h">
+                <table class="tabela-5w2h">
+                    <tr><th>Sigla</th><th>Pergunta</th><th>Exemplo Prático Aplicado</th></tr>
+                    <tr><td>What</td><td>O quê?</td><td>Renegociar contratos com fornecedores de matéria-prima (aço e embalagens).</td></tr>
+                    <tr><td>Why</td><td>Por quê?</td><td>Reduzir o CMV (Custo da Mercadoria Vendida) em 8 pontos percentuais para recuperar a margem de contribuição.</td></tr>
+                    <tr><td>Where</td><td>Onde?</td><td>Na cadeia de suprimentos, focando nos 5 insumos de maior impacto no custo final.</td></tr>
+                    <tr><td>When</td><td>Quando?</td><td>Contratos novos assinados até o dia 15/04 (início do próximo trimestre).</td></tr>
+                    <tr><td>Who</td><td>Quem?</td><td>Gerente de Compras (João), com apoio da Controladoria para simular os impactos.</td></tr>
+                    <tr><td>How</td><td>Como?</td><td>1. Consolidar volume de compras dos últimos 6 meses. 2. Abrir cotação com 3 novos fornecedores. 3. Oferecer contrato de exclusividade por 12 meses em troca de redução de preço.</td></tr>
+                    <tr><td>How much</td><td>Quanto custa?</td><td>Tempo da equipe (custo interno) e possível multa por quebra de contrato atual (avaliar se compensa).</td></tr>
+                </table>
+                <p style="margin-top:0.8rem; font-style:italic;">Na versão simples, uso só 5W1H (sem o How much), mas para projetos grandes, o custo da ação é vital.</p>
+            </div>
+
+            <!-- ===== FASE 7 ===== -->
+            <h2>FASE 7: CHECKLIST SEMANAL DE MONITORAMENTO</h2>
+            <p>Como garantir que a equipe está seguindo este manual. Como gestor geral, você não precisa fazer tudo, mas precisa conferir se está sendo feito. Separo 15 minutos na sexta-feira à tarde para revisar esses pontos com o controller ou com o gerente administrativo. É o meu "checklist de decolagem".</p>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="check1"> <label for="check1"><strong>Fluxo de Caixa Projetado:</strong> A controladoria rodou a projeção de caixa para as próximas 4 semanas? Temos algum "buraco de caixa" previsto que precise de ação antecipada (ex: captação de recurso)?</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check2"> <label for="check2"><strong>Alerta de Custos:</strong> Algum centro de custo já consumiu mais de 70% do budget mensal com apenas metade do mês? Se sim, já acionamos o responsável para explicações?</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check3"> <label for="check3"><strong>Indicadores de Performance:</strong> O painel de KPIs da semana foi atualizado? O CAC está estável? A margem bruta acumulada do mês está dentro do tolerável (variação de +/- 3%)?</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check4"> <label for="check4"><strong>Pendências 5W2H:</strong> Abri a planilha de ações da última reunião de resultados. Todas as tarefas com data para esta semana foram concluídas? Se não, o impedimento foi escalado?</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check5"> <label for="check5"><strong>Conformidade e Segurança:</strong> Algum relatório de auditoria interna apontou não-conformidade grave esta semana? As notas fiscais de alto valor tiveram a conferência dupla obrigatória?</label>
+                </div>
+            </div>
+
+            <!-- ===== RESUMO DO LÍDER ===== -->
+            <div class="resumo-lider">
+                <h3 style="margin-top:0; color:rgb(39, 98, 141);"> RESUMO DE BOLSO PARA O LÍDER (O Que Levar Para a Reunião)</h3>
+                <p style="font-size:1.2rem;"><strong>Planejamento:</strong> Responde "Para onde vamos?" (É a bússola).<br>
+                <strong>Controladoria:</strong> Responde "Onde estamos?" (É o GPS).<br>
+                <strong>Gestão:</strong> Responde "O que faremos AGORA para corrigir a rota?" (É o volante).</p>
+                <p style="margin-top:1rem;">Lembre-se: <strong>Dado sem análise é só barulho. Análise sem ação é só entretenimento.</strong></p>
+            </div>
+
+            <!-- ===== NOVO: ESPAÇO PARA ANOTAÇÕES (tom pessoal, sem consultoria) ===== -->
+            <div class="espaco-anotacoes">
+                <p style="font-weight:600; margin-bottom:0.5rem;"> MEUS COMPROMISSOS (baseado neste manual):</p>
+                <p style="color:#2a4b66; font-size:1rem;">Anote aqui as ações que você vai tirar do papel esta semana.</p>
+                <div class="linha-anotacao"></div>
+                <div class="linha-anotacao"></div>
+                <div class="linha-anotacao"></div>
+                <p style="font-style:italic; color:#3a627c; margin-top:0.8rem;">— Depois de preencher, lembre-se: Insight sem ação é apenas entretenimento. Ação é a chave fundamental para todo sucesso.</p>
+            </div>
+
+            <!-- ===== NOTA FINAL (reforçada) ===== -->
+            <div class="nota-final">
+                <p><strong>Nota Final:</strong> Ao longo da minha trajetória, vi empresas com planos brilhantes quebrarem por falta de controle, e empresas com controles rígidos murcharem por falta de visão. Este manual tenta unir os dois mundos. Não é um documento estático; rabisque, adapte, discuta com sua equipe. O dono do negócio é você, mas o sucesso é construído em equipe. Conte comigo. E, mais importante, <strong>cobre de mim a mesma régua que colocamos aqui.</strong></p>
+            </div>
+        </div>
+
+        <!-- rodapé -->
+        <div class="rodape">
+            <div class="direitos">
+                © 2026 Silvanio Góis - Todos os direitos reservados
+            </div>
+            <a href="https://www.silvaniogois.com.br/" target="_blank" rel="noopener">ir ao Site</a>
+        </div>
+    </div>
+</body>
+</html>
